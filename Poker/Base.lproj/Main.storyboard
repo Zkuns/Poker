@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Suits View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Poker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SuitsViewController" customModule="Poker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,36 +22,114 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RwC-pW-HyK">
-                                <rect key="frame" x="147.5" y="258.5" width="80" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="3JY-yv-6aP"/>
-                                </constraints>
-                                <state key="normal" title="Start"/>
-                                <connections>
-                                    <segue destination="uv3-Ub-lDy" kind="show" id="5Pz-OK-Rgb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEM-nT-10I">
-                                <rect key="frame" x="147.5" y="378.5" width="80" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="SIn-vo-XnI"/>
-                                </constraints>
-                                <state key="normal" title="clean"/>
-                                <connections>
-                                    <action selector="cleanData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oea-4o-y3t"/>
-                                </connections>
-                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mZV-fr-Tcd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nei-F5-kVw">
+                                    <size key="itemSize" width="116" height="142"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SuitCollectionViewCell" id="GkP-im-Tvj" customClass="SuitCollectionViewCell" customModule="Poker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="116" height="142"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="116" height="142"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GL1-Xj-R3o">
+                                                    <rect key="frame" x="0.0" y="0.0" width="232" height="142"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJG-MV-B8e">
+                                                            <rect key="frame" x="149" y="88" width="50" height="30"/>
+                                                            <state key="normal" title="删除"/>
+                                                            <connections>
+                                                                <action selector="clickDeleteButton:" destination="GkP-im-Tvj" eventType="touchUpInside" id="eAT-Kc-BHx"/>
+                                                            </connections>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiM-9k-KJC">
+                                                            <rect key="frame" x="8" y="61" width="100" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="EZp-Ct-Tbq"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQc-3O-r0E">
+                                                            <rect key="frame" x="149" y="32" width="50" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="W7a-lU-8Wf"/>
+                                                            </constraints>
+                                                            <state key="normal" title="开始"/>
+                                                            <connections>
+                                                                <action selector="clickStartButton:" destination="GkP-im-Tvj" eventType="touchUpInside" id="cbA-cQ-Q8Q"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="hiM-9k-KJC" firstAttribute="centerY" secondItem="GL1-Xj-R3o" secondAttribute="centerY" id="2C9-h0-Ngt"/>
+                                                        <constraint firstItem="hiM-9k-KJC" firstAttribute="centerX" secondItem="GL1-Xj-R3o" secondAttribute="centerX" multiplier="0.5" id="Vbl-ic-hbB"/>
+                                                        <constraint firstItem="lJG-MV-B8e" firstAttribute="width" secondItem="iQc-3O-r0E" secondAttribute="width" id="eie-DP-F1L"/>
+                                                        <constraint firstAttribute="bottom" secondItem="lJG-MV-B8e" secondAttribute="bottom" constant="24" id="gcy-Db-4We"/>
+                                                        <constraint firstItem="lJG-MV-B8e" firstAttribute="centerX" secondItem="GL1-Xj-R3o" secondAttribute="centerX" multiplier="1.5" id="r9I-7T-Gkd"/>
+                                                        <constraint firstItem="iQc-3O-r0E" firstAttribute="top" secondItem="GL1-Xj-R3o" secondAttribute="top" constant="32" id="uZf-zX-gfB"/>
+                                                        <constraint firstItem="iQc-3O-r0E" firstAttribute="centerX" secondItem="GL1-Xj-R3o" secondAttribute="centerX" multiplier="1.5" id="v5I-Dl-6ah"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="GL1-Xj-R3o" firstAttribute="leading" secondItem="GkP-im-Tvj" secondAttribute="leading" id="0f0-gm-bVb"/>
+                                            <constraint firstAttribute="bottom" secondItem="GL1-Xj-R3o" secondAttribute="bottom" id="b0X-Jn-lUd"/>
+                                            <constraint firstItem="GL1-Xj-R3o" firstAttribute="width" secondItem="GkP-im-Tvj" secondAttribute="width" multiplier="2" id="rQP-77-CAK"/>
+                                            <constraint firstItem="GL1-Xj-R3o" firstAttribute="top" secondItem="GkP-im-Tvj" secondAttribute="top" id="xpN-EU-b45"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="container_view" destination="GL1-Xj-R3o" id="rYT-sw-dsp"/>
+                                            <outlet property="delete_button" destination="lJG-MV-B8e" id="SDm-HN-jOi"/>
+                                            <outlet property="name" destination="hiM-9k-KJC" id="SWG-ZF-4U5"/>
+                                            <outlet property="start_button" destination="iQc-3O-r0E" id="PXf-60-rZx"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SuitAddCollectionViewCell" id="gTY-Hf-tLF" customClass="SuitAddCollectionViewCell" customModule="Poker" customModuleProvider="target">
+                                        <rect key="frame" x="130" y="0.0" width="116" height="142"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="116" height="142"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jz-jR-qEf">
+                                                    <rect key="frame" x="44" y="44" width="28" height="54"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                                    <color key="textColor" red="0.82736045120000001" green="0.82750314469999997" blue="0.82735145089999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="4Jz-jR-qEf" firstAttribute="centerY" secondItem="gTY-Hf-tLF" secondAttribute="centerY" id="0xY-5e-qQA"/>
+                                            <constraint firstItem="4Jz-jR-qEf" firstAttribute="centerX" secondItem="gTY-Hf-tLF" secondAttribute="centerX" id="ppr-Gf-9De"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="RwC-pW-HyK" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-60" id="7TY-Xx-jGN"/>
-                            <constraint firstItem="hEM-nT-10I" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IVa-Ll-2VI"/>
-                            <constraint firstItem="RwC-pW-HyK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pb6-1m-0JC"/>
-                            <constraint firstItem="hEM-nT-10I" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="60" id="ZJ8-ak-fwQ"/>
+                            <constraint firstAttribute="trailing" secondItem="mZV-fr-Tcd" secondAttribute="trailing" id="Knz-lo-0YP"/>
+                            <constraint firstItem="mZV-fr-Tcd" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Ozt-0k-Wkl"/>
+                            <constraint firstItem="mZV-fr-Tcd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="feu-K4-PIn"/>
+                            <constraint firstItem="mZV-fr-Tcd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="t5c-A9-BQm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lY0-MD-8qA"/>
+                    <connections>
+                        <outlet property="suitsCollectionView" destination="mZV-fr-Tcd" id="EfM-pd-66Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -59,7 +138,7 @@
         <!--Cards View Controller-->
         <scene sceneID="c3A-jW-gxK">
             <objects>
-                <viewController id="uv3-Ub-lDy" customClass="CardsViewController" customModule="Poker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CardsViewController" id="uv3-Ub-lDy" customClass="CardsViewController" customModule="Poker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PP2-GH-KAC"/>
                         <viewControllerLayoutGuide type="bottom" id="lwg-bV-ndt"/>
@@ -69,7 +148,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ptp-Ur-HLg">
-                                <rect key="frame" x="0.0" y="64" width="375" height="529"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rWw-NL-wCm">
                                     <size key="itemSize" width="375" height="337"/>
@@ -79,7 +158,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardCollectionViewCell" id="Cgc-ue-RC3" customClass="CardCollectionViewCell" customModule="Poker" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="375" height="337"/>
+                                        <rect key="frame" x="0.0" y="118" width="375" height="337"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="337"/>

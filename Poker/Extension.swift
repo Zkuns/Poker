@@ -29,3 +29,11 @@ extension Sequence {
     return result
   }
 }
+
+extension Date {
+  func toFormatString(str: String) -> String {
+    let format = DateFormatter()
+    format.dateFormat = str
+    return format.string(for: self) ?? ""
+  }
+}

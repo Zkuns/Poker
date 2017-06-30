@@ -31,12 +31,4 @@ class Card: NSObject, NSCoding {
     aCoder.encode(color, forKey: "color")
   }
   
-  static func generateCard() -> [Card]{
-    return ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "K", "Q"].reduce([], { result, number in
-      let cards = ["spade", "heart", "diamond", "club"].map { color in
-        return Card(number: number, color: color)
-      }
-      return result + cards
-    })
-  }
 }

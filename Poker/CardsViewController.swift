@@ -16,7 +16,6 @@ class CardsViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    getCards()
     CardsCollectionView.delegate = self
     CardsCollectionView.dataSource = self
   }
@@ -24,25 +23,6 @@ class CardsViewController: UIViewController {
   func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     let currentIndex = Int(CardsCollectionView.contentOffset.x / CardsCollectionView.frame.size.width) + 1;
     pageLabel.text = "\(currentIndex)/\(cards.count)";
-  }
-  
-  private
-  
-  func getCards() {
-    if let card_data = UserDefaults.standard.object(forKey: "cards") as? Data {
-      if let local_cards = NSKeyedUnarchiver.unarchiveObject(with: card_data) as? [Card] {
-        self.cards = local_cards
-      }
-    } else {
-      self.cards = generateCards()
-    }
-  }
-  
-  func generateCards() -> [Card] {
-    let new_cards = Card.generateCard().shuffled()
-    let data = NSKeyedArchiver.archivedData(withRootObject: new_cards)
-    UserDefaults.standard.setValue(data, forKey: "cards")
-    return new_cards
   }
 }
 
@@ -59,10 +39,6 @@ extension CardsViewController: UICollectionViewDataSource {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCollectionViewCell", for: indexPath) as! CardCollectionViewCell
     cell.setData(card: cards[indexPath.row])
     return cell
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    pageLabel.text = "\(indexPath.row)/\(cards.count)"
   }
 }
 
