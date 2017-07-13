@@ -9,20 +9,82 @@
 import UIKit
 
 class CardsViewController: UIViewController {
-  @IBOutlet weak var CardsCollectionView: UICollectionView!
+  @IBOutlet weak var cardsCollectionView: UICollectionView!
   @IBOutlet weak var pageLabel: UILabel!
+  @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var timeStartButton: UIButton!
+  @IBOutlet weak var timeResetButton: UIButton!
+  @IBOutlet weak var pageForwardButton: UIButton!
+  @IBOutlet weak var pageBackButton: UIButton!
   
   var cards = [Card]()
+  var timer: Timer?
+  var currentIndex: Int = 1
+  var time_record = 0 {
+    didSet{
+      self.timeLabel.text = convertToTimeString(second: time_record)
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    CardsCollectionView.delegate = self
-    CardsCollectionView.dataSource = self
+    cardsCollectionView.delegate = self
+    cardsCollectionView.dataSource = self
   }
 
-  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    let currentIndex = Int(CardsCollectionView.contentOffset.x / CardsCollectionView.frame.size.width) + 1;
-    pageLabel.text = "\(currentIndex)/\(cards.count)";
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    currentIndex = Int(cardsCollectionView.contentOffset.x / cardsCollectionView.frame.size.width) + 1
+    if currentIndex == 52 {
+      pageForwardButton.isEnabled = false
+    } else if currentIndex == 1 {
+      pageBackButton.isEnabled = false
+    } else {
+      pageForwardButton.isEnabled = true
+      pageBackButton.isEnabled = true
+    }
+    pageLabel.text = "\(currentIndex)/\(cards.count)"
+  }
+  
+  @IBAction func timeStartButton(_ sender: Any) {
+    if let time = timer {
+      timeStartButton.setTitle(">", for: .normal)
+      timeResetButton.isEnabled = true
+      time.invalidate()
+      timer = nil
+    } else {
+      timeStartButton.setTitle("||", for: .normal)
+      timeResetButton.isEnabled = false
+      timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startCount), userInfo: nil, repeats: true)
+    }
+  }
+  
+  @IBAction func timeResetButton(_ sender: Any) {
+    self.time_record = 0
+  }
+  
+  @IBAction func pageBackButton(_ sender: Any) {
+    currentIndex = (currentIndex - 10) < 0 ? 1 : currentIndex - 10
+    cardsCollectionView.scrollToItem(at: IndexPath(row: currentIndex - 1, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+  }
+  
+  @IBAction func pageForwardButton(_ sender: Any) {
+    currentIndex = (currentIndex + 10) > 52 ? 52 : currentIndex + 10
+    cardsCollectionView.scrollToItem(at: IndexPath(row: currentIndex - 1, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+  }
+  
+  @objc func startCount() {
+    time_record += 1
+  }
+  
+  private func convertToTimeString(second: Int) -> String {
+    var time = ""
+    let hours = second / 3600
+    if (hours > 0) { time.append("\(hours)小时，") }
+    let minutes = second / 60
+    if (minutes > 0) { time.append("\(minutes)分钟，") }
+    let seconds = second % 60
+    time.append("\(seconds)秒")
+    return time
   }
 }
 

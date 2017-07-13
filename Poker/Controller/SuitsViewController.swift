@@ -15,6 +15,7 @@ class SuitsViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    title = "卡牌列表"
     suits = Suit.suits ?? []
     suitsCollectionView.delegate = self
     suitsCollectionView.dataSource = self
@@ -53,6 +54,12 @@ extension SuitsViewController: UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let width = (UIScreen.main.bounds.width - 10) / 3 - 10
+    let height = width * 6.8 / 5.5
+    return CGSize(width: width, height: height)
+  }
 }
 
 extension SuitsViewController: UICollectionViewDelegate {
@@ -66,16 +73,12 @@ extension SuitsViewController: UICollectionViewDelegate {
 }
 
 extension SuitsViewController: UICollectionViewDelegateFlowLayout {
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//  }
-  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 0
+    return 10
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 0
+    return 10
   }
 }
 

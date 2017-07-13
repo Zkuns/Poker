@@ -52,8 +52,14 @@ class SuitCollectionViewCell: UICollectionViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    //add click
     let gesture = UITapGestureRecognizer(target: self, action: #selector(toggleView(sender:)))
     container_view.addGestureRecognizer(gesture)
+    
+    //add border
+    self.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
+    self.layer.borderWidth = 1
+    self.layer.cornerRadius = 5
   }
   
   func toggleView(sender: UITapGestureRecognizer) {

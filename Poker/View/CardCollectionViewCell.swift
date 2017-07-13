@@ -9,7 +9,13 @@
 import UIKit
 
 class CardCollectionViewCell: UICollectionViewCell {
-  @IBOutlet weak var detail: UILabel!
+  @IBOutlet weak var topText: UILabel!
+  @IBOutlet weak var topImage: UIImageView!
+  @IBOutlet weak var bottomText: UILabel!
+  @IBOutlet weak var bottomImage: UIImageView!
+  @IBOutlet weak var colorImage: UIImageView!
+  @IBOutlet weak var cardView: UIView!
+  
   var card: Card?{
     didSet{
       updateUI()
@@ -21,6 +27,19 @@ class CardCollectionViewCell: UICollectionViewCell {
   }
   
   func updateUI(){
-    detail.text = card?.description
+    topText.text = card?.number
+    bottomText.text = card?.number
+    colorImage.image = UIImage(named: card?.color ?? "")
+    topImage.image = UIImage(named: card?.color ?? "")
+    bottomImage.image = UIImage(named: card?.color ?? "")
+  }
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    cardView.layer.borderColor = UIColor.gray.cgColor
+    cardView.layer.borderWidth = 1
+    cardView.layer.cornerRadius = 5
+    bottomText.transform = CGAffineTransform.identity.rotated(by: CGFloat(Double.pi))
+    bottomImage.transform = CGAffineTransform.identity.rotated(by: CGFloat(Double.pi))
   }
 }
