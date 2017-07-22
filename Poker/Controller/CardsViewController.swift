@@ -22,12 +22,13 @@ class CardsViewController: UIViewController {
   var currentIndex: Int = 1
   var time_record = 0 {
     didSet{
-      self.timeLabel.text = convertToTimeString(second: time_record)
+      self.timeLabel.text = convertToTimeString(number: time_record)
     }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    initView()
     cardsCollectionView.delegate = self
     cardsCollectionView.dataSource = self
   }
@@ -47,14 +48,14 @@ class CardsViewController: UIViewController {
   
   @IBAction func timeStartButton(_ sender: Any) {
     if let time = timer {
-      timeStartButton.setTitle(">", for: .normal)
+      timeStartButton.setImage(UIImage(named: "start"), for: .normal)
       timeResetButton.isEnabled = true
       time.invalidate()
       timer = nil
     } else {
-      timeStartButton.setTitle("||", for: .normal)
+      timeStartButton.setImage(UIImage(named: "stop"), for: .normal)
       timeResetButton.isEnabled = false
-      timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startCount), userInfo: nil, repeats: true)
+      timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(startCount), userInfo: nil, repeats: true)
     }
   }
   
@@ -76,14 +77,25 @@ class CardsViewController: UIViewController {
     time_record += 1
   }
   
-  private func convertToTimeString(second: Int) -> String {
+  private func initView() {
+    timeStartButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    timeResetButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    pageBackButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    pageForwardButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+  }
+  
+  private func convertToTimeString(number: Int) -> String {
+    let number = Double(number) / 10
+    let decimal = "\(number)".components(separatedBy: ".")[1]
+    let second = Int(number)
     var time = ""
     let hours = second / 3600
+    let left = second % 3600
     if (hours > 0) { time.append("\(hours)小时，") }
-    let minutes = second / 60
+    let minutes = left / 60
     if (minutes > 0) { time.append("\(minutes)分钟，") }
     let seconds = second % 60
-    time.append("\(seconds)秒")
+    time.append("\(seconds).\(decimal)秒")
     return time
   }
 }

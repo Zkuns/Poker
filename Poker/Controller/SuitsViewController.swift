@@ -65,10 +65,23 @@ extension SuitsViewController: UICollectionViewDataSource {
 extension SuitsViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard indexPath.row == suits.count else { return }
-    Suit.addSuit(suit: Suit(name: nil))
-    suits = Suit.suits ?? []
-    collectionView.insertItems(at: [IndexPath(row: suits.count - 1, section: 0)])
-    suitsCollectionView.reloadData()
+    let alert = UIAlertController(title: "添加套牌", message: nil, preferredStyle: .alert)
+    alert.addTextField(configurationHandler: { textField in
+      textField.borderStyle = .none
+      textField.text = "新套牌 \(Date().toFormatString(str: "H:mm"))"
+    })
+    let createAction = UIAlertAction(title: "确认", style: .default, handler: { action in
+      let suitname = alert.textFields?[0].text ?? ""
+      Suit.addSuit(suit: Suit(name: suitname))
+      self.suits = Suit.suits ?? []
+      collectionView.insertItems(at: [IndexPath(row: self.suits.count - 1, section: 0)])
+      self.suitsCollectionView.reloadData()
+    })
+    let cancleAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+    alert.view.tintColor = UIColor.gray
+    alert.addAction(createAction)
+    alert.addAction(cancleAction)
+    present(alert, animated: true, completion: nil)
   }
 }
 
@@ -91,10 +104,18 @@ extension SuitsViewController: SuitCollectionViewCellDelegate {
   }
  
   func delete(suit: Suit?, cell: SuitCollectionViewCell) {
-    guard let suit = suit else { return }
-    Suit.deleteSuit(suit: suit)
-    suits = Suit.suits ?? []
-    suitsCollectionView.deleteItems(at: [suitsCollectionView.indexPath(for: cell)!])
+    let alert = UIAlertController(title: "", message: "确认删除吗？", preferredStyle: .actionSheet)
+    let sure = UIAlertAction(title: "确认", style: .default, handler: { action in
+      guard let suit = suit else { return }
+      Suit.deleteSuit(suit: suit)
+      self.suits = Suit.suits ?? []
+      self.suitsCollectionView.deleteItems(at: [self.suitsCollectionView.indexPath(for: cell)!])
+    })
+    let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+    alert.view.tintColor = UIColor.gray
+    alert.addAction(sure)
+    alert.addAction(cancel)
+    present(alert, animated: true, completion: nil)
   }
   
   func animateOtherCell() {

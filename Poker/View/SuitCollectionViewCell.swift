@@ -60,6 +60,10 @@ class SuitCollectionViewCell: UICollectionViewCell {
     self.layer.borderColor = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1).cgColor
     self.layer.borderWidth = 1
     self.layer.cornerRadius = 5
+    
+    //change button image size
+    start_button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    delete_button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
   }
   
   func toggleView(sender: UITapGestureRecognizer) {

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Zkun. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension MutableCollection where Indices.Iterator.Element == Index {
   mutating func shuffle() {
@@ -35,5 +35,15 @@ extension Date {
     let format = DateFormatter()
     format.dateFormat = str
     return format.string(for: self) ?? ""
+  }
+}
+
+extension UINavigationBar {
+  static func configBackButton() {
+    let navigationBar = UINavigationBar.appearance()
+    let backimage = UIImage(named: "back")?.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0))
+    navigationBar.backIndicatorImage = backimage
+    navigationBar.backIndicatorTransitionMaskImage = backimage
+    navigationBar.tintColor = UIColor(red: 138/255, green: 138/255, blue: 138/255, alpha: 1)
   }
 }

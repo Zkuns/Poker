@@ -44,9 +44,12 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GL1-Xj-R3o">
                                                     <rect key="frame" x="0.0" y="0.0" width="232" height="142"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJG-MV-B8e">
-                                                            <rect key="frame" x="149" y="88" width="50" height="30"/>
-                                                            <state key="normal" title="删除"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJG-MV-B8e">
+                                                            <rect key="frame" x="149" y="72" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="lJG-MV-B8e" secondAttribute="height" multiplier="1:1" id="Dhl-Lj-MuQ"/>
+                                                            </constraints>
+                                                            <state key="normal" image="delete"/>
                                                             <connections>
                                                                 <action selector="clickDeleteButton:" destination="GkP-im-Tvj" eventType="touchUpInside" id="eAT-Kc-BHx"/>
                                                             </connections>
@@ -60,12 +63,13 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQc-3O-r0E">
-                                                            <rect key="frame" x="149" y="32" width="50" height="30"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQc-3O-r0E">
+                                                            <rect key="frame" x="149.5" y="20" width="50" height="50"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="width" secondItem="iQc-3O-r0E" secondAttribute="height" multiplier="1:1" id="LOv-ws-4wq"/>
                                                                 <constraint firstAttribute="width" constant="50" id="W7a-lU-8Wf"/>
                                                             </constraints>
-                                                            <state key="normal" title="开始"/>
+                                                            <state key="normal" image="start"/>
                                                             <connections>
                                                                 <action selector="clickStartButton:" destination="GkP-im-Tvj" eventType="touchUpInside" id="cbA-cQ-Q8Q"/>
                                                             </connections>
@@ -76,9 +80,9 @@
                                                         <constraint firstItem="hiM-9k-KJC" firstAttribute="centerY" secondItem="GL1-Xj-R3o" secondAttribute="centerY" id="2C9-h0-Ngt"/>
                                                         <constraint firstItem="hiM-9k-KJC" firstAttribute="centerX" secondItem="GL1-Xj-R3o" secondAttribute="centerX" multiplier="0.5" id="Vbl-ic-hbB"/>
                                                         <constraint firstItem="lJG-MV-B8e" firstAttribute="width" secondItem="iQc-3O-r0E" secondAttribute="width" id="eie-DP-F1L"/>
-                                                        <constraint firstAttribute="bottom" secondItem="lJG-MV-B8e" secondAttribute="bottom" constant="24" id="gcy-Db-4We"/>
+                                                        <constraint firstAttribute="bottom" secondItem="lJG-MV-B8e" secondAttribute="bottom" constant="20" id="gcy-Db-4We"/>
                                                         <constraint firstItem="lJG-MV-B8e" firstAttribute="centerX" secondItem="GL1-Xj-R3o" secondAttribute="centerX" multiplier="1.5" id="r9I-7T-Gkd"/>
-                                                        <constraint firstItem="iQc-3O-r0E" firstAttribute="top" secondItem="GL1-Xj-R3o" secondAttribute="top" constant="32" id="uZf-zX-gfB"/>
+                                                        <constraint firstItem="iQc-3O-r0E" firstAttribute="top" secondItem="GL1-Xj-R3o" secondAttribute="top" constant="20" id="uZf-zX-gfB"/>
                                                         <constraint firstItem="iQc-3O-r0E" firstAttribute="centerX" secondItem="GL1-Xj-R3o" secondAttribute="centerX" multiplier="1.5" id="v5I-Dl-6ah"/>
                                                     </constraints>
                                                 </view>
@@ -129,7 +133,9 @@
                             <constraint firstItem="mZV-fr-Tcd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="t5c-A9-BQm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="lY0-MD-8qA"/>
+                    <navigationItem key="navigationItem" id="lY0-MD-8qA">
+                        <barButtonItem key="backBarButtonItem" title=" " id="WHv-KE-Eod"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="suitsCollectionView" destination="mZV-fr-Tcd" id="EfM-pd-66Z"/>
                     </connections>
@@ -244,46 +250,50 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0秒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXw-XT-WFx">
-                                <rect key="frame" x="42" y="50" width="28" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="42" y="50" width="36" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcW-OK-9VZ">
-                                <rect key="frame" x="218" y="42" width="50" height="36"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcW-OK-9VZ">
+                                <rect key="frame" x="218" y="38.5" width="50" height="50"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="IcW-OK-9VZ" secondAttribute="height" multiplier="1:1" id="H1b-lA-XkE"/>
                                     <constraint firstAttribute="width" constant="50" id="Vxl-M1-zud"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="&gt;"/>
+                                <state key="normal" image="start"/>
                                 <connections>
                                     <action selector="timeStartButton:" destination="uv3-Ub-lDy" eventType="touchUpInside" id="Qfb-zR-EWA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-O4-QNE">
-                                <rect key="frame" x="298" y="42" width="50" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="↺"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-O4-QNE">
+                                <rect key="frame" x="298" y="39.5" width="50" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PPf-O4-QNE" secondAttribute="height" multiplier="1:1" constant="1" id="YX9-3j-8im"/>
+                                </constraints>
+                                <state key="normal" image="ref"/>
                                 <connections>
                                     <action selector="timeResetButton:" destination="uv3-Ub-lDy" eventType="touchUpInside" id="ZKP-Af-ay9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kD-dD-oHO">
-                                <rect key="frame" x="70.5" y="606" width="50" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kD-dD-oHO">
+                                <rect key="frame" x="70.5" y="596" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="P55-4T-OQJ"/>
+                                    <constraint firstAttribute="width" secondItem="8kD-dD-oHO" secondAttribute="height" multiplier="1:1" id="mVt-bb-nn4"/>
                                 </constraints>
-                                <state key="normal" title="&lt;&lt;"/>
+                                <state key="normal" image="fast-backward"/>
                                 <connections>
                                     <action selector="pageBackButton:" destination="uv3-Ub-lDy" eventType="touchUpInside" id="NEf-yJ-xxu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCa-88-45x">
-                                <rect key="frame" x="254.5" y="606" width="50" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCa-88-45x">
+                                <rect key="frame" x="254.5" y="596" width="50" height="50"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="cCa-88-45x" secondAttribute="height" multiplier="1:1" id="5vc-PX-Ie3"/>
                                     <constraint firstAttribute="width" constant="50" id="Xfs-YC-9zN"/>
                                 </constraints>
-                                <state key="normal" title="&gt;&gt;"/>
+                                <state key="normal" image="fast-forward"/>
                                 <connections>
                                     <action selector="pageForwardButton:" destination="uv3-Ub-lDy" eventType="touchUpInside" id="eW0-fb-TDl"/>
                                 </connections>
@@ -343,4 +353,11 @@
             <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="delete" width="200" height="200"/>
+        <image name="fast-backward" width="200" height="200"/>
+        <image name="fast-forward" width="200" height="200"/>
+        <image name="ref" width="200" height="200"/>
+        <image name="start" width="200" height="200"/>
+    </resources>
 </document>

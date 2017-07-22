@@ -24,9 +24,9 @@ class Suit: NSObject, NSCoding {
     }
   }
   
-  init(name: String?) {
+  init(name: String) {
     super.init()
-    self.name = name ?? "new suit \(Date().toFormatString(str: "yy-MM-d H:m"))"
+    self.name = name
     self.store_key = self.generateRandomKey()
     self.cards = self.generateCards().shuffled()
   }
